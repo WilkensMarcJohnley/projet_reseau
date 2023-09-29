@@ -31,20 +31,26 @@ int main(int argc, char* argv[]){
           }
 
           paquet.type=DATA;
-          paquet.num_seq=num_paquet%8;
+          paquet.num_seq=num_paquet%2;
           paquet.lg_info=taille_msg;
           paquet.somme_ctrl=generer_controle(paquet);
 
           do{
             vers_reseau(&paquet);
             env_max++;
-            depart_temporisateur(100);
+            depart_temporisateur(200);
             evenement=attendre();
-          }while(evenement!=-1);
+          }while(evenement!=-1 && env_max<10);
 
+          if(env_max==10){
+            printf("erreur reseau");
+            return -1;
+          }
+          env_max=0;
           de_reseau(&acc_reception);
           arret_temporisateur();
           num_paquet++;
+          de_application(message, &taille_msg);
         }
         printf("[TRP] Fin execution protocole transfert de donnees (TDD).\n");
         return 0;
