@@ -43,6 +43,8 @@ uint8_t generer_controle(paquet_t p);
 
 // verifie la somme de controle
 bool verifier_controle(paquet_t p);
+
+int inc(int i, int max_i);
 /*--------------------------------------*
 * Fonction d'inclusion dans la fenetre *
 *--------------------------------------*/

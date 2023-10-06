@@ -31,6 +31,9 @@ bool verifier_controle(paquet_t p){
   return som_ctrl_recu==p.somme_ctrl;
 }
 
+int inc(int i, int max_i){
+  return (i+1)%max_i;
+}
 
 /* ===================== Fenêtre d'anticipation ============================= */
 
